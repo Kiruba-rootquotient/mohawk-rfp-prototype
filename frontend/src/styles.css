@@ -121,19 +121,19 @@
   }
   
   .badge-success {
-    @apply badge bg-success/10 text-success;
+    @apply badge bg-success bg-opacity-10 text-success;
   }
   
   .badge-warning {
-    @apply badge bg-warning/10 text-warning;
+    @apply badge bg-warning bg-opacity-10 text-warning;
   }
   
   .badge-error {
-    @apply badge bg-error/10 text-error;
+    @apply badge bg-error bg-opacity-10 text-error;
   }
   
   .badge-info {
-    @apply badge bg-info/10 text-info;
+    @apply badge bg-info bg-opacity-10 text-info;
   }
 }
 
