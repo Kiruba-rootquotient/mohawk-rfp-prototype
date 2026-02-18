@@ -45,11 +45,41 @@ import { Product } from '../../models/types';
               </div>
             </div>
 
+            <!-- Visualize Options -->
+            <div class="flex items-center space-x-3 mb-6">
+              <button class="btn-outline flex items-center space-x-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+                <span>Visualize</span>
+              </button>
+              <button class="btn-outline flex items-center space-x-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+                <span>Room View</span>
+              </button>
+              <button class="btn-outline flex items-center space-x-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                </svg>
+                <span>View Swatch</span>
+              </button>
+            </div>
+
             <p class="text-muted-foreground mb-8">{{ product.description }}</p>
 
+            <!-- Pricing -->
             <div class="border-t border-b border-border py-6 mb-6">
-              <div class="text-4xl font-bold text-foreground mb-2">\${{ product.price.toLocaleString() }}</div>
-              <div class="text-muted-foreground">\${{ product.pricePerBox.toFixed(2) }} per box - {{ product.boxSize }}</div>
+              <div class="flex items-baseline space-x-3 mb-2">
+                <div class="text-sm text-muted-foreground line-through">MRP: \${{ (product.price * 1.43).toFixed(2) }} / sq ft</div>
+              </div>
+              <div class="flex items-baseline space-x-3">
+                <div class="text-4xl font-bold text-primary">\${{ (product.price / 50).toFixed(2) }} / sq ft</div>
+                <div class="text-sm text-success font-semibold">Your Dealer Price</div>
+              </div>
+              <div class="text-sm text-muted-foreground mt-2">\${{ product.pricePerBox.toFixed(2) }} per box - {{ product.boxSize }}</div>
             </div>
 
             <div class="flex items-center space-x-4 mb-8">
