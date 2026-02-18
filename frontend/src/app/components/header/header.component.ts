@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { CartService } from '../../services/cart.service';
 import { MockDataService } from '../../services/mock-data.service';
+import { NotificationDrawerComponent } from '../notification-drawer/notification-drawer.component';
 
 @Component({
   selector: 'app-header',
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, NotificationDrawerComponent],
   template: `
     <header class="sticky top-0 z-50 bg-card border-b border-border">
       <div class="container mx-auto px-4">
@@ -33,10 +34,12 @@ import { MockDataService } from '../../services/mock-data.service';
                class="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-muted">
               Orders
             </a>
-            <a class="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-muted cursor-pointer">
+            <a routerLink="/quotes" routerLinkActive="text-primary" 
+               class="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-muted">
               Quotes
             </a>
-            <a class="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-muted cursor-pointer">
+            <a routerLink="/pricing" routerLinkActive="text-primary" 
+               class="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-muted">
               Pricing
             </a>
             <a class="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-muted cursor-pointer">
@@ -79,7 +82,7 @@ import { MockDataService } from '../../services/mock-data.service';
             </button>
 
             <!-- Notifications -->
-            <button class="relative p-2 hover:bg-muted rounded-lg transition-colors">
+            <button (click)="toggleNotifications()" class="relative p-2 hover:bg-muted rounded-lg transition-colors">
               <svg class="w-5 h-5 text-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
               </svg>
@@ -96,12 +99,19 @@ import { MockDataService } from '../../services/mock-data.service';
         </div>
       </div>
     </header>
+
+    <!-- Notification Drawer -->
+    <app-notification-drawer 
+      [isOpen]="isNotificationDrawerOpen"
+      (closeDrawer)="closeNotifications()">
+    </app-notification-drawer>
   `,
   styles: []
 })
 export class HeaderComponent implements OnInit {
   cartCount = 0;
   user: any;
+  isNotificationDrawerOpen = false;
 
   constructor(
     private cartService: CartService,
@@ -119,5 +129,13 @@ export class HeaderComponent implements OnInit {
 
   goToCart(): void {
     this.router.navigate(['/cart']);
+  }
+
+  toggleNotifications(): void {
+    this.isNotificationDrawerOpen = !this.isNotificationDrawerOpen;
+  }
+
+  closeNotifications(): void {
+    this.isNotificationDrawerOpen = false;
   }
 }
