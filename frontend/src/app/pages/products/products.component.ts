@@ -137,41 +137,48 @@ import { Product } from '../../models/types';
                   </div>
                 </div>
 
-                <!-- Product Info -->
+                  <!-- Product Info -->
                 <div class="p-5">
+                  <div class="flex items-center justify-between mb-2">
+                    <div class="text-xs text-muted-foreground uppercase">{{ product.type }}</div>
+                    <span *ngIf="product.badge === 'Best Seller'" class="badge bg-primary text-white px-2 py-1 text-xs">Best Seller</span>
+                    <span *ngIf="product.badge === 'Trending'" class="badge bg-warning text-white px-2 py-1 text-xs">Trending</span>
+                    <span *ngIf="product.badge === 'New'" class="badge bg-success text-white px-2 py-1 text-xs">New</span>
+                  </div>
                   <div class="text-xs text-muted-foreground mb-1">{{ product.sku }}</div>
-                  <h3 class="text-lg font-semibold text-foreground mb-1 group-hover:text-primary transition-colors">{{ product.name }}</h3>
-                  <div class="text-sm text-muted-foreground mb-3">{{ product.type }}</div>
+                  <h3 class="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-1">{{ product.name }}</h3>
                   
                   <!-- Rating -->
                   <div class="flex items-center mb-3">
                     <div class="flex items-center">
-                      <svg *ngFor="let star of [1,2,3,4,5]" class="w-4 h-4" [ngClass]="star <= product.rating ? 'text-warning' : 'text-muted'" fill="currentColor" viewBox="0 0 20 20">
+                      <svg *ngFor="let star of [1,2,3,4,5]" class="w-3 h-3" [ngClass]="star <= product.rating ? 'text-warning' : 'text-muted'" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                       </svg>
-                      <span class="ml-2 text-sm text-foreground font-medium">{{ product.rating }}</span>
-                      <span class="ml-1 text-sm text-muted-foreground">({{ product.reviewCount }})</span>
+                      <span class="ml-2 text-xs text-foreground">{{ product.rating }}</span>
                     </div>
                   </div>
 
-                  <div class="text-sm text-muted-foreground mb-4">{{ product.colors }} Colors Available</div>
-
-                  <!-- Price -->
-                  <div class="flex items-baseline justify-between mb-4">
-                    <div>
-                      <div class="text-2xl font-bold text-foreground">\${{ product.price.toLocaleString() }}</div>
-                      <div class="text-xs text-muted-foreground">\${{ product.pricePerBox.toFixed(2) }} / box</div>
-                    </div>
-                  </div>
+                  <div class="text-xs text-muted-foreground mb-3">{{ product.colors }} Colors</div>
 
                   <!-- Actions -->
-                  <button
-                    (click)="addToCart(product, $event)"
-                    [disabled]="!product.inStock"
-                    class="btn-primary w-full"
-                  >
-                    {{ product.inStock ? 'Add to Cart' : 'Out of Stock' }}
-                  </button>
+                  <div class="flex items-center space-x-2">
+                    <button
+                      (click)="addToCart(product, $event)"
+                      [disabled]="!product.inStock"
+                      class="btn-primary flex-1 text-xs py-2"
+                    >
+                      {{ product.inStock ? 'Add to Cart' : 'Out of Stock' }}
+                    </button>
+                    <button
+                      (click)="$event.preventDefault(); $event.stopPropagation()"
+                      class="btn-outline px-3 py-2 text-xs"
+                      title="Order Sample"
+                    >
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
