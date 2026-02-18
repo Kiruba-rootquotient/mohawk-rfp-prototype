@@ -8,7 +8,7 @@ import { HeaderComponent } from './components/header/header.component';
   template: `
     <div class="min-h-screen bg-background">
       <app-header />
-      <main>
+      <main class="lg:pl-64">
         <router-outlet />
       </main>
     </div>
