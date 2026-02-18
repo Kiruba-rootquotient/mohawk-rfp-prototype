@@ -8,11 +8,41 @@ import { MockDataService } from '../../services/mock-data.service';
   imports: [CommonModule, RouterModule],
   template: `
     <div class="min-h-screen bg-background">
-      <!-- Welcome Banner -->
-      <div class="bg-card border-b border-border">
+      <!-- AI Assistant Banner -->
+      <div class="bg-gradient-to-r from-card via-muted/20 to-card border-b border-border">
         <div class="container mx-auto px-4 py-8">
-          <h1 class="text-3xl font-bold text-foreground">Welcome Back, {{ user.name }}!</h1>
-          <p class="text-muted-foreground mt-2">Here's what's happening with your orders today.</p>
+          <div class="flex items-center space-x-4 mb-6">
+            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+              <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <h1 class="text-2xl font-bold text-foreground">How can I help you today, {{ user.name.split(' ')[0] }}?</h1>
+            </div>
+          </div>
+
+          <!-- Quick Actions Pills -->
+          <div class="flex flex-wrap gap-3">
+            <button class="px-4 py-2 bg-muted hover:bg-muted/80 text-foreground rounded-full text-sm transition-colors flex items-center space-x-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+              </svg>
+              <span>Check status of order #88219</span>
+            </button>
+            <button class="px-4 py-2 bg-muted hover:bg-muted/80 text-foreground rounded-full text-sm transition-colors flex items-center space-x-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <span>Find vinyl in stock under $50/sqft</span>
+            </button>
+            <button class="px-4 py-2 bg-muted hover:bg-muted/80 text-foreground rounded-full text-sm transition-colors flex items-center space-x-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              <span>Show me Q3 Rebate report</span>
+            </button>
+          </div>
         </div>
       </div>
 
