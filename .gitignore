@@ -92,3 +92,7 @@ mohawk_design_v2.pdf
 # Environment files
 *.env
 *.env.*
+-e 
+# Environment files
+*.env
+*.env.*
